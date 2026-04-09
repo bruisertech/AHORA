@@ -20,6 +20,8 @@ body, html {
     width: 100%;
     height: 100%;
     overflow: hidden; /* Prevent scrolling for the cinematic experience */
+    position: fixed; /* Lock page entirely */
+    touch-action: none; /* Prevent browser handling of pinch-zoom/swiping */
     font-family: 'Welcome Darling', serif;
     /* background-color: var(--primary-color); */
 }
@@ -29,8 +31,8 @@ body, html {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: var(--primary-color);
     z-index: -10;
     pointer-events: none;
@@ -204,8 +206,8 @@ body, html {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     z-index: 10; /* Ensure visible over bg */
 }
@@ -216,29 +218,31 @@ body, html {
 }
 
 .edge-top-left {
-    top: -20px;
-    left: -20px;
-    width: 30vw; /* Adjust scale */
+    top: 0;
+    left: 0;
+    width: 30%; /* Use percentage to avoid viewport unit overflow */
     min-width: 250px;
+    transform-origin: top left;
     animation: breatheTopLeft 8s ease-in-out infinite alternate;
 }
 
 .edge-bottom-right {
-    bottom: -20px;
-    right: -20px;
-    width: 25vw;
+    bottom: 0;
+    right: 0;
+    width: 25%;
     min-width: 200px;
+    transform-origin: bottom right;
     animation: breatheBottomRight 7s ease-in-out infinite alternate;
 }
 
 @keyframes breatheTopLeft {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(-10px, -10px) scale(1.05); }
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
 }
 
 @keyframes breatheBottomRight {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(10px, 10px) scale(1.03); }
+    0% { transform: scale(1); }
+    100% { transform: scale(1.03); }
 }
 
 
@@ -314,8 +318,8 @@ body, html {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Touches top edge */
@@ -365,8 +369,8 @@ body, html {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     z-index: 45; /* Above gift, below header */
     overflow: hidden;
@@ -397,17 +401,17 @@ body, html {
         height: 70vh; /* Better fit for smaller screens */
     }
     .edge-top-left {
-        width: 40vw;
+        width: 40%;
     }
     .edge-bottom-right {
-        width: 40vw;
+        width: 40%;
     }
 }
 
 /* Fallback/Forced BG Image Rendering */
 .bg-image {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     position: absolute;
     top: 0;
